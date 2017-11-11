@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Image } from 'react-native';
-import { Container, Header, Content, Form, Icon, Item, Input, Label, Radio, Text, Right, Button, ListItem, Body, Card, CardItem } from 'native-base';
+import { Container, Header, Footer, Content, Form, Icon, Item, Input, Label, Radio, Text, Right, Button, ListItem, Body, Card, CardItem } from 'native-base';
 import { StackNavigator } from 'react-navigation';
 
 let customer = {
@@ -78,10 +78,14 @@ class HomeScreen extends React.Component {
                         <Text>
                            Card Type: {balance.type}
                         </Text>
+                        <Icon style={styles.arrow} name="arrow-forward" />
                       </Body>
                     </CardItem >
                   </Card>
                 </Content>
+                <Footer>
+                    <Image style={styles.mic} source={require('./icon.png')} />
+                </Footer>
         </Container>
     );
   }
@@ -131,5 +135,8 @@ const styles = StyleSheet.create({
     },
     cardMaster: {
         borderRadius: 10
+    },
+    arrow: {
+        paddingLeft: 300
     }
 });
