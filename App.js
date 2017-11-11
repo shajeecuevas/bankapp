@@ -3,7 +3,6 @@ import { View } from 'react-native';
 import { Container, Header, Content, Form, Item, Input, Label, Radio, Text, Right, Button, ListItem } from 'native-base';
 import { StackNavigator } from 'react-navigation';
 
-//
 //class HomeScreen extends React.Component {
 //  static navigationOptions = {
 //    title: 'Welcome',
@@ -46,31 +45,59 @@ import { StackNavigator } from 'react-navigation';
 //    return <SimpleApp />;
 //  }
 //}
-//export default class FixedLabelExample extends Component {
-//  render() {
-//    return (
-//      <Container>
-//        <Header />
-//        <Content>
-//          <Form>
-//            <Item floatingLabel>
-//              <Label>First Name</Label>
-//              <Input />
-//            </Item>
-//            <Item floatingLabel last>
-//              <Label>Last Name</Label>
-//              <Input />
-//            </Item>
-//          </Form>
-//          <ListItem>
-//            <Text> Remember Me </Text>
-//            <Right>
-//                <Radio selected={true}/>
-//            </Right>
-//          </ListItem>
-//          <Button block primary><Text>Sign In</Text></Button>
-//        </Content>
-//      </Container>
-//    );
-//  }
-//}
+class LoginScreen extends Component {
+  static navigationOptions = {
+    title: 'EZBanking   ',
+  };
+  render() {
+  const { navigate } = this.props.navigation;
+    return (
+      <Container>
+        <Header />
+        <Content>
+          <Form>
+            <Item floatingLabel>
+              <Label>First Name</Label>
+              <Input />
+            </Item>
+            <Item floatingLabel last>
+              <Label>Last Name</Label>
+              <Input />
+            </Item>
+          </Form>
+          <ListItem>
+            <Text> Remember Me </Text>
+            <Right>
+                <Radio selected={true}/>
+            </Right>
+          </ListItem>
+          <Button block primary onPress={() => navigate('Home')}><Text>Sign In</Text></Button>
+        </Content>
+      </Container>
+    );
+  }
+}
+
+class HomeScreen extends React.Component {
+  static navigationOptions = {
+    title: 'Home Screen',
+  };
+  render() {
+    return (
+      <View>
+        <Text>Lorem Ipsum Homie</Text>
+      </View>
+    );
+  }
+}
+
+const BankApp = StackNavigator({
+  Login: { screen: LoginScreen },
+  Home: {screen: HomeScreen },
+});
+
+export default class App extends React.Component {
+  render() {
+    return <BankApp />;
+  }
+}
