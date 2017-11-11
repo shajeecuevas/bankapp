@@ -1,61 +1,41 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
-import { Container, Header, Content, Form, Item, Input, Label, Radio, Text, Right, Button, ListItem } from 'native-base';
+import { View, StyleSheet, Image } from 'react-native';
+import { Container, Header, Content, Form, Icon, Item, Input, Label, Radio, Text, Right, Button, ListItem, Body, Card, CardItem } from 'native-base';
 import { StackNavigator } from 'react-navigation';
 
-//class HomeScreen extends React.Component {
-//  static navigationOptions = {
-//    title: 'Welcome',
-//  };
-//  render() {
-//    const { navigate } = this.props.navigation;
-//    return (
-//      <View>
-//        <Text>Hello, Chat App!</Text>
-//        <Button
-//          onPress={() => navigate('Chat')}
-//        >
-//            <Text>Chat with Lucy</Text>
-//        </Button>
-//      </View>
-//    );
-//  }
-//}
-//
-//class ChatScreen extends React.Component {
-//  static navigationOptions = {
-//    title: 'Chat with Lucy',
-//  };
-//  render() {
-//    return (
-//      <View>
-//        <Text>Chat with Lucy</Text>
-//      </View>
-//    );
-//  }
-//}
-//
-//const SimpleApp = StackNavigator({
-//  Home: { screen: HomeScreen },
-//  Chat: {screen: ChatScreen },
-//});
-//
-//export default class App extends React.Component {
-//  render() {
-//    return <SimpleApp />;
-//  }
-//}
+let customer = {
+       id: "5a063c1da73e4942cdafe87b",
+       first_name: "Rebecca",
+       last_name: "Bruen",
+          address: {
+            street_number: "3303",
+            street_name: "Mount Hope Road",
+            city: "Titusville",
+            state: "Pennsylvania",
+            zip: "16354"
+          }
+       };
+let balance = {
+    balance: 33201,
+    customer_id: "5a063c1da73e4942cdafe87b",
+    nickname: "Aubree's Account",
+    rewards: 27942,
+    type: "Credit Card",
+    id: "5a063c1ea73e4942cdafe87e"
+    };
+
 class LoginScreen extends Component {
   static navigationOptions = {
-    title: 'EZBanking   ',
+    title: 'EZBanking',
   };
   render() {
+  let style;
   const { navigate } = this.props.navigation;
     return (
-      <Container>
+      <Container style={styles.theme}>
         <Header />
         <Content>
-          <Form>
+          <Form style={styles.theme}>
             <Item floatingLabel>
               <Label>First Name</Label>
               <Input />
@@ -65,7 +45,7 @@ class LoginScreen extends Component {
               <Input />
             </Item>
           </Form>
-          <ListItem>
+          <ListItem style={styles.loginPadding}>
             <Text> Remember Me </Text>
             <Right>
                 <Radio selected={true}/>
@@ -80,13 +60,29 @@ class LoginScreen extends Component {
 
 class HomeScreen extends React.Component {
   static navigationOptions = {
-    title: 'Home Screen',
+    title: 'Welcome, ' + customer.first_name,
   };
   render() {
     return (
-      <View>
-        <Text>Lorem Ipsum Homie</Text>
-      </View>
+        <Container>
+                <Header>
+                    <Text style={styles.cardHeader}>Banks and Cards</Text>
+                </Header>
+                <Content>
+                  <Card style={styles.cardMaster}>
+                    <CardItem style={styles.cardInfo}>
+                      <Body>
+                        <Text style={styles.cardBalance}>
+                           ${balance.balance}
+                        </Text>
+                        <Text>
+                           Card Type: {balance.type}
+                        </Text>
+                      </Body>
+                    </CardItem >
+                  </Card>
+                </Content>
+        </Container>
     );
   }
 }
@@ -101,3 +97,39 @@ export default class App extends React.Component {
     return <BankApp />;
   }
 }
+
+const styles = StyleSheet.create({
+    theme: {
+        backgroundColor: '#f1f1f1',
+    },
+    loginPadding: {
+        marginTop: 20,
+        marginBottom: 20
+    },
+    mic: {
+        width: 55,
+        height: 55,
+        bottom: 0,
+        right: 0
+    },
+    cardInfo: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 12,
+    },
+    cardHeader: {
+        marginTop: 15,
+        fontSize: 20
+    },
+    cardBalance: {
+        fontSize: 15,
+        textAlign: 'center'
+
+    },
+    cardMaster: {
+        borderRadius: 10
+    }
+});
